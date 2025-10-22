@@ -253,6 +253,22 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
+    
+    const handleCheckoutShopping = (e) => {
+        alert('Functionality not currently available');
+    };
+
+    const handleIncrement = (item) => {
+        dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }))
+    };
+
+    const handleDecrement = (item) => {
+        dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }))
+    };
+    
+    const handleRemove = (item) => {
+        dispatch(removeItem(item.name))
+    };
 
     const [addedToCart, setAddedToCart] = useState({});
 
@@ -264,6 +280,12 @@ function ProductList({ onHomeClick }) {
           [product.name]: true, // Set the current product's name as a key with value 'true' to mark it as added
         }));
       };
+
+    const calculateTotalQuantity = () => {
+        return CartItems ? CartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+    };
+       
+       
 
     return (
         <div>
